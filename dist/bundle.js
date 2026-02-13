@@ -16,27 +16,17 @@
   \**********************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_one__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/one */ \"./src/modules/one.js\");\n/* harmony import */ var _modules_two__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/two */ \"./src/modules/two.js\");\n\n\n\n(0,_modules_one__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n(0,_modules_two__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer */ \"./src/modules/timer.js\");\n\n\n(0,_modules_timer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"15 february 2026\");\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?\n}");
 
 /***/ },
 
-/***/ "./src/modules/one.js"
-/*!****************************!*\
-  !*** ./src/modules/one.js ***!
-  \****************************/
+/***/ "./src/modules/timer.js"
+/*!******************************!*\
+  !*** ./src/modules/timer.js ***!
+  \******************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst oneModule = () => {\n  const one = \"one\";\n  console.log(one);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneModule);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/one.js?\n}");
-
-/***/ },
-
-/***/ "./src/modules/two.js"
-/*!****************************!*\
-  !*** ./src/modules/two.js ***!
-  \****************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst twoModule = () => {\n  const two = \"two\";\n  console.log(two);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (twoModule);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/two.js?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst timer = (deadline) => {\n  const timerHours = document.getElementById(\"timer-hours\");\n  const timerMinutes = document.getElementById(\"timer-minutes\");\n  const timerSeconds = document.getElementById(\"timer-seconds\");\n\n  const getTimeRemaining = () => {\n    let dateStop = new Date(deadline).getTime();\n    let dateNow = new Date().getTime();\n    let timeRemaining = (dateStop - dateNow) / 1000;\n    let hours = Math.floor(timeRemaining / 60 / 60);\n    let minutes = Math.floor((timeRemaining / 60) % 60);\n    let seconds = Math.floor(timeRemaining % 60);\n\n    const fHours = hours < 10 ? \"0\" + hours : hours;\n    const fMinutes = minutes < 10 ? \"0\" + minutes : minutes;\n    const fSeconds = seconds < 10 ? \"0\" + seconds : seconds;\n\n    return { timeRemaining, fHours, fMinutes, fSeconds };\n  };\n\n  let intervalId;\n\n  const upDateClock = () => {\n    let getTime = getTimeRemaining();\n    timerHours.textContent = getTime.fHours;\n    timerMinutes.textContent = getTime.fMinutes;\n    timerSeconds.textContent = getTime.fSeconds;\n\n    if (getTime.timeRemaining <= 0) {\n      clearInterval(intervalId);\n      timerHours.textContent = \"00\";\n      timerMinutes.textContent = \"00\";\n      timerSeconds.textContent = \"00\";\n    }\n  };\n\n  intervalId = setInterval(upDateClock, 1000);\n\n  upDateClock();\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\n\n\n//# sourceURL=webpack://webpack-demo/./src/modules/timer.js?\n}");
 
 /***/ }
 
