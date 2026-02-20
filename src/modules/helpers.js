@@ -1,4 +1,4 @@
-const animate = ({ timing, draw, duration }) => {
+const animate = ({ timing, draw, duration, complete }) => {
   let start = performance.now();
 
   requestAnimationFrame(function animate(time) {
@@ -13,6 +13,8 @@ const animate = ({ timing, draw, duration }) => {
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
+    } else {
+      if (complete) complete();
     }
   });
 };

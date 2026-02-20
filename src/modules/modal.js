@@ -26,7 +26,19 @@ const modal = () => {
       !e.target.closest(".popup-content") ||
       e.target.classList.contains("popup-close")
     ) {
-      modal.style.display = "none";
+      animate({
+        duration: 500,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          content.style.opacity = 1 - progress;
+        },
+        complete() {
+          modal.style.display = "none";
+          content.style.opacity = 1;
+        },
+      });
     }
   });
 };
